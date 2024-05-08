@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://static.tildacdn.com/css/fonts-tildasans.css" rel="stylesheet" onerror="this.loaderr='y';">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your Coloring Book</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: 'TildaSans', Arial, sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 2.5% 0;
+            text-align: center;
+        }
+
+        .fixed-image {
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 50vh;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 52%;
+            margin: 5% auto;
+            padding: 4%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .container p {
+            font-size: 1.2vw;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 8%;
+            font-size: 50px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 2%;
+            font-size: 3vw;
+        }
+
+        p {
+            color: #333;
+            margin-top: 2%;
+            font-size: 1.7vw;
+        }
+
+        form {
+            margin-top: 2%;
+        }
+
+        input[type="file"] {
+            padding: 2%;
+            margin-bottom: 2%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 90%;
+        }
+
+        input[type="submit"] {
+            padding: 2% 5%;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-left: 0;
+            width: 95%;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 1em;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ea70ad;
+        }
+
+        .line {
+            width: 60%;
+            height: 2px;
+            background-color: #535f6b;
+            margin: 8% auto;
+            margin-top: 2%;
+        }
+
+        .grid-container {
+            display: grid;
+            /* grid-template-columns: 30% 70%; */
+            grid-template-columns: auto auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            grid-gap: 10%;
+            margin-top: -3%;
+            margin-left: 19.3%;
+            margin-right: 19.5%;
+        }
+
+        .grid-item {
+            padding: 10px;
+            border-radius: 0.7%;
+        }
+
+        .bottom-panel {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 8% 0;
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .bottom-panel p {
+            color: rgb(210, 210, 210);
+        }
+
+        @media only screen and (min-width: 768px) {
+            .container {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+    </div>
+    <img src="https://i.ibb.co/h249gXF/3e41dbfa-1fb6-47c4-b121-11ec21e3c163.jpg" alt="Fixed Image" class="fixed-image">
+    <h1>Create your Coloring Book</h1>
+    <div class="container">
+        <h2>Upload image</h2>
+        <p>The larger the image, the more time it takes to generate the color page</p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image" accept="image/*">
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+    </div>
+    <div class="line"></div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <h2>Coloring Books</h2>
+        </div>
+        <div class="grid-item">
+            <p>Welcome to our image to coloring page converter, where your creativity knows no bounds! Transform your
+                favorite photos, sketches, or illustrations into coloring pages with just a few clicks. Whether you're
+                an
+                artist, a parent seeking fun activities for your kids, our tool is here to inspire</p>
+        </div>
+    </div>
+    <div class="bottom-panel">
+        <p>For any inquiries, please don't hesitate to reach out to us at krkurbanova@edu.hse.ru.</p>
+    </div>
+</body>
+
+</html>

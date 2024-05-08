@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://static.tildacdn.com/css/fonts-tildasans.css" rel="stylesheet" onerror="this.loaderr='y';">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Две картинки</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.pinimg.com/474x/ec/72/06/ec72062a9724946f1a8275d0f60ee8aa.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'TildaSans', Arial, sans-serif;
+        }
+
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 3%;
+            font-size: 2.5vw;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 2.5% 0;
+            text-align: center;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            left: 5%;
+            margin-top: -1%;
+            font-size: 1.5vw;
+        }
+
+        .image-container {
+            margin-top: 3%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            max-height: 70vh;
+            height: auto;
+            border: 2px ridge #535f6b;
+        }
+
+        .download-button {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px;
+        }
+
+        .download-button button {
+            padding: 2% 5%;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 1em;
+        }
+
+        .download-button button:hover {
+            background-color: #ea70ad;
+        }
+
+        .bottom-panel {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 8% 0;
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        .bottom-panel p {
+            color: rgb(210, 210, 210);
+        }
+
+        @media only screen and (min-width: 768px) {
+            .container {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="{% url 'upload_image' %}" class="home-link">Main page</a>
+    </div>
+
+    <h1>Coloring page is ready! Thank you for waiting</h1>
+    <div class="image-container">
+        <img src="{{uploaded_image.image.url}}" alt="Uploaded Image">
+        <img id="processed-image" src="{{processed_image.image.url}}" alt="Processed Image">
+    </div>
+    <div class="download-button" id="download-button">
+        <a href="{{processed_image.image.url}}" download>
+            <button id="download-btn">Download result</button>
+        </a>
+    </div>
+
+    <script>
+        function updateButtonWidth() {
+            var processedImageWidth = document.getElementById('processed-image').clientWidth;
+            document.getElementById('download-btn').style.width = processedImageWidth + 'px';
+        }
+
+        window.onload = function () {
+            updateButtonWidth();
+            window.addEventListener('resize', updateButtonWidth);
+        };
+    </script>
+    <div class="bottom-panel">
+        <p>For any inquiries, please don't hesitate to reach out to us at krkurbanova@edu.hse.ru.</p>
+    </div>
+</body>
+
+</html>

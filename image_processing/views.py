@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import ImageForm
-from .models import UploadedImage
+from .models import UploadedImage, ProcessedImage
 from .utils import convert_to_jpeg
 import os
 
@@ -33,5 +33,20 @@ def processed_results(request):
         uploaded_image.process_image()
         processed_image = uploaded_image.processedimage_set.last()
         return render(request, 'cluster_results.html', {'uploaded_image': uploaded_image, 'processed_image': processed_image})
+    else:
+        return redirect('upload_image')
+    
+
+def edge_results(request):
+    clustered_image = ProcessedImage.objects.last()
+    if clustered_image:
+        if request.method == 'POST':
+            threshold = int(request.POST.get('threshold'))
+        else:
+            threshold = 70
+
+        clustered_image.edges_image(threshold)
+        edged_image = clustered_image.edgesimage_set.last()
+        return render(request, 'edges_result.html', {'edged_image': edged_image})
     else:
         return redirect('upload_image')

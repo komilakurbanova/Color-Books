@@ -22,7 +22,7 @@ def convert_to_jpeg(image):
     return temp_jpeg_file
 
 
-def kmeans_edges(image, k, threshold):
+def kmeans(image, k):
     # k = 10
     image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     pixel_values = image_rgb.reshape((-1, 3))
@@ -33,17 +33,32 @@ def kmeans_edges(image, k, threshold):
     labels = labels.flatten()
     segmented_image = centers[labels.flatten()]
     segmented_image = segmented_image.reshape(image_rgb.shape)
-    gray_image = cv2.cvtColor(segmented_image, cv2.COLOR_RGB2GRAY)
-    blurred_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
-    gradient_x = cv2.Sobel(blurred_image, cv2.CV_64F, 1, 0, ksize=5)
-    gradient_y = cv2.Sobel(blurred_image, cv2.CV_64F, 0, 1, ksize=5)
-    gradient_magnitude = np.sqrt(gradient_x ** 2 + gradient_y ** 2)
-    gradient_magnitude = cv2.normalize(gradient_magnitude, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
-    # # threshold = 50
+    # gray_image = cv2.cvtColor(segmented_image, cv2.COLOR_RGB2GRAY)
+    # blurred_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    # gradient_x = cv2.Sobel(blurred_image, cv2.CV_64F, 1, 0, ksize=5)
+    # gradient_y = cv2.Sobel(blurred_image, cv2.CV_64F, 0, 1, ksize=5)
+    # gradient_magnitude = np.sqrt(gradient_x ** 2 + gradient_y ** 2)
+    # gradient_magnitude = cv2.normalize(gradient_magnitude, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
+    # threshold = 50
     # _, edges = cv2.threshold(gradient_magnitude, threshold, 255, cv2.THRESH_BINARY)
     # edges = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
     # edges = cv2.bitwise_not(edges)
     # white_background = np.ones_like(image) * 255
     # masked_image = cv2.bitwise_and(white_background, edges)
     # return masked_image
-    return gradient_magnitude
+    return segmented_image
+
+
+def edges(segmented_image, threshold):
+    gray_image = cv2.cvtColor(segmented_image, cv2.COLOR_RGB2GRAY)
+    blurred_image = cv2.GaussianBlur(gray_image, (5, 5), 0)
+    gradient_x = cv2.Sobel(blurred_image, cv2.CV_64F, 1, 0, ksize=5)
+    gradient_y = cv2.Sobel(blurred_image, cv2.CV_64F, 0, 1, ksize=5)
+    gradient_magnitude = np.sqrt(gradient_x ** 2 + gradient_y ** 2)
+    gradient_magnitude = cv2.normalize(gradient_magnitude, None, 0, 255, cv2.NORM_MINMAX, dtype=cv2.CV_8U)
+    _, edges = cv2.threshold(gradient_magnitude, threshold, 255, cv2.THRESH_BINARY)
+    edges = cv2.cvtColor(edges, cv2.COLOR_GRAY2BGR)
+    edges = cv2.bitwise_not(edges)
+    white_background = np.ones_like(segmented_image) * 255
+    masked_image = cv2.bitwise_and(white_background, edges)
+    return masked_image

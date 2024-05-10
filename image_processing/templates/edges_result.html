@@ -152,6 +152,7 @@
             .home-link {
                 font-size: 2vw;
             }
+
             .back-button {
                 margin-top: -4%;
             }
@@ -168,23 +169,23 @@
     <div class="header">
         <a href="{% url 'upload_image' %}" class="home-link">Main page</a>
     </div>
-    
+
     <h1>Coloring page is ready! Thank you for waiting</h1>
     <div class="back-button">
-        <a href="{% url 'upload_image' %}" id="back-btn" class="back-link">  <!-- Заменить на реальную ссылку -->
+        <a href="{% url 'processed_results' %}" id="back-btn" class="back-link"> <!-- Заменить на реальную ссылку -->
             <button>Back</button>
         </a>
     </div>
-    
+
     <div class="image-container">
-        
-        <img src="{{uploaded_image.image.url}}" alt="Uploaded Image">
-        <img id="processed-image" src="{{processed_image.processed_image.url}}" alt="Processed Image">
+
+        <img src="{{edged_image.image.uploaded_image.image.url}}" alt="Uploaded Image">
+        <img id="edged-image" src="{{edged_image.edged_image.url}}" alt="Edged Image">
     </div>
-    <h2>Number of clusters: {{ uploaded_image.num_clusters }} <br> Threshold: {{ uploaded_image.threshold }}</h2>
+    <h2>Number of clusters: {{ edged_image.image.uploaded_image.num_clusters }} <br> Threshold: {{ edged_image.threshold }}</h2>
 
     <div class="download-button" id="download-button">
-        <a href="{{processed_image.image.url}}" download>
+        <a href="{{edged_image.edged_image.url}}" download>
             <button id="download-btn">Download result</button>
         </a>
     </div>

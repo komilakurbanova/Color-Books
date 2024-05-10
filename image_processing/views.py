@@ -5,10 +5,6 @@ from .models import UploadedImage, ProcessedImage
 from .utils import convert_to_jpeg
 import os
 
-# Create your views here.
-def say_hello(request):
-    return render(request, "hello.html", {"name": "Komila"})
-
 
 def upload_image(request):
     if request.method == 'POST':

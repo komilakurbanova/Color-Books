@@ -45,6 +45,38 @@
             font-size: 1.5vw;
         }
 
+        .back-button {
+            position: absolute;
+            margin-top: -3.2%;
+            transform: translateY(-50%);
+            left: 5%;
+        }
+
+        .back-link {
+            color: black;
+            text-decoration: none;
+            font-size: 1.5vw;
+        }
+
+        .back-link button {
+            padding: 2% 5%;
+            width: 6vw;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 1.5vw;
+        }
+
+        .back-link button:hover {
+            background-color: #ea70ad;
+        }
+
+
         .image-container {
             margin-top: 3%;
             position: relative;
@@ -109,6 +141,14 @@
             .home-link {
                 font-size: 2vw;
             }
+            .back-button {
+                margin-top: -4%;
+            }
+
+            .back-link button {
+                width: 8vw;
+            }
+
         }
     </style>
 </head>
@@ -117,9 +157,16 @@
     <div class="header">
         <a href="{% url 'upload_image' %}" class="home-link">Main page</a>
     </div>
-
+    
     <h1>Coloring page is ready! Thank you for waiting</h1>
+    <div class="back-button">
+        <a href="{% url 'upload_image' %}" id="back-btn" class="back-link">  <!-- Заменить на реальную ссылку -->
+            <button>Back</button>
+        </a>
+    </div>
+    
     <div class="image-container">
+        
         <img src="{{uploaded_image.image.url}}" alt="Uploaded Image">
         <img id="processed-image" src="{{processed_image.image.url}}" alt="Processed Image">
     </div>

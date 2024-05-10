@@ -190,16 +190,13 @@
     <h1>Create your Coloring Book</h1>
     <div class="container">
         <h2>Upload image</h2>
-        <p>The larger the image, the more time it takes to generate the color page</p>
+        <p>The larger the image and number of clusters, the more time it takes to generate the color page!</p>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="file" name="image" accept="image/*">
             <br>
             <label for="num_clusters">Number of clusters: </label>
-            <input type="number" id="num_clusters" name="num_clusters">
-            <br>
-            <label for="threshold">Threshold: </label>
-            <input type="number" id="threshold" name="threshold">
+            <input type="number" id="num_clusters" name="num_clusters", min="2", max="100" required>
             <br>
             <input type="submit" value="Upload">
         </form>

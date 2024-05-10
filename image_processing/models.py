@@ -5,6 +5,7 @@ from PIL import Image as PILImage
 import tempfile
 import os
 import numpy as np
+import cv2
 
 
 class UploadedImage(models.Model):
@@ -15,10 +16,9 @@ class UploadedImage(models.Model):
     def process_image(self):
         if not self.processedimage_set.exists():
             with tempfile.NamedTemporaryFile(suffix='.jpeg') as temp_jpeg_file:
-                image = PILImage.open(self.image)
-                numpy_image = np.array(image)
+                image = cv2.imread(self.image.path)
                 
-                clustered_image = kmeans(numpy_image, self.num_clusters)
+                clustered_image = kmeans(image, self.num_clusters)
                 clustered_image_pil = PILImage.fromarray(clustered_image)
                 clustered_image_pil.save(temp_jpeg_file.name, format='JPEG')
 
@@ -39,10 +39,9 @@ class ProcessedImage(models.Model):
     def edges_image(self, threshold=70):
         # if not self.edgesimage_set.exists():
         with tempfile.NamedTemporaryFile(suffix='.jpeg') as temp_jpeg_file:
-            image = PILImage.open(self.processed_image)
-            numpy_image = np.array(image)
+            image = cv2.imread(self.processed_image.path)
 
-            edges_image_array = edges(numpy_image, threshold)
+            edges_image_array = edges(image, threshold)
             edges_image_pil = PILImage.fromarray(edges_image_array)
             edges_image_pil.save(temp_jpeg_file.name, format='JPEG')
 

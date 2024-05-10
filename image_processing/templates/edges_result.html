@@ -99,11 +99,55 @@
             border: 2px ridge #535f6b;
         }
 
+        input[type="number"] {
+            position: absolute;
+            left: 20%;
+            transform: translateX(-50%);
+            margin-top: 0px;
+            width: 10%;
+            height: 2vw;
+            margin-bottom: 2%;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+
+        label[for="threshold"] {
+            position: absolute;
+            left: 11%;
+            transform: translateX(-50%);
+            margin-top: 3px;
+            font-size: 1.5vw;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            position: absolute;
+            left: 29%;
+            transform: translateX(-50%);
+            margin-top: 1px;
+
+            width: 6vw;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 1.5vw;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ea70ad;
+        }
+
         .download-button {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 10px;
+            margin-top: 50px;
         }
 
         .download-button button {
@@ -161,6 +205,27 @@
                 width: 8vw;
             }
 
+            input[type="number"] {
+                left: 21%;
+                margin-top: 0px;
+            }
+
+            label[for="threshold"] {
+                left: 11%;
+                margin-top: 1px;
+                font-size: 1.7vw;
+            }
+
+            input[type="submit"] {
+                width: 9vw;
+                margin-top: 1px;
+                left: 32%;
+            }
+
+            .download-button {
+                margin-top: 30px;
+            }
+
         }
     </style>
 </head>
@@ -193,13 +258,13 @@
     <form method="POST" action="{% url 'edge_results' %}">
         {% csrf_token %}
         <label for="threshold">Threshold:</label>
-        <input type="number" name="threshold" id="threshold">
+        <input type="number" name="threshold" id="threshold" min="0" max="255" required>
         <input type="submit" value="Apply">
     </form>
 
     <script>
         function updateButtonWidth() {
-            var processedImageWidth = document.getElementById('processed-image').clientWidth;
+            var processedImageWidth = document.getElementById('edged-image').clientWidth;
             document.getElementById('download-btn').style.width = processedImageWidth + 'px';
         }
 

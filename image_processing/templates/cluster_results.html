@@ -28,6 +28,13 @@
             font-size: 2.5vw;
         }
 
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 1%;
+            font-size: 1.5vw;
+        }
+
         .header {
             width: 100%;
             background-color: #535f6b;
@@ -138,6 +145,10 @@
                 font-size: 3vw;
             }
 
+            h2 {
+                font-size: 2vw;
+            }
+
             .home-link {
                 font-size: 2vw;
             }
@@ -170,6 +181,8 @@
         <img src="{{uploaded_image.image.url}}" alt="Uploaded Image">
         <img id="processed-image" src="{{processed_image.image.url}}" alt="Processed Image">
     </div>
+    <h2>Number of clusters: {{ uploaded_image.num_clusters }} <br> Threshold: {{ uploaded_image.threshold }}</h2>
+
     <div class="download-button" id="download-button">
         <a href="{{processed_image.image.url}}" download>
             <button id="download-btn">Download result</button>

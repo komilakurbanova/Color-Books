@@ -21,16 +21,6 @@ def upload_image(request):
     return render(request, 'upload_image.html', {'form': form})
 
 
-# def processed_results(request):
-#     uploaded_image = UploadedImage.objects.last()
-#     if uploaded_image:
-#         uploaded_image.process_image()
-#         processed_image = uploaded_image.processedimage_set.last()
-#         return render(request, 'cluster_results.html', {'uploaded_image': uploaded_image, 'processed_image': processed_image})
-#     else:
-#         return redirect('upload_image')
-
-
 def processed_results(request):
     uploaded_image = UploadedImage.objects.last()
     if uploaded_image:

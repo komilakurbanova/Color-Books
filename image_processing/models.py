@@ -6,20 +6,11 @@ import tempfile
 import os
 import numpy as np
 
-# Create your models here.
-# class UploadedImage(models.Model):
-#     image = models.ImageField(upload_to='images/')
-#     uploaded_at = models.DateTimeField(auto_now_add=True)
-
-
-# class ProcessedImage(models.Model):
-#     uploaded_image = models.OneToOneField(UploadedImage, on_delete=models.CASCADE)
-#     processed_image = models.ImageField(upload_to='processed/')
-#     processed_at = models.DateTimeField(auto_now_add=True)
 
 class UploadedImage(models.Model):
     image = models.ImageField(upload_to='images/')
     num_clusters = models.IntegerField(default=4)
+    threshold = models.IntegerField(default=70)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def process_image(self):
@@ -29,9 +20,9 @@ class UploadedImage(models.Model):
 
                 numpy_image = np.array(image)
                 
-                cropped_image = kmeans_edges(numpy_image, self.num_clusters)
-                cropped_image_pil = PILImage.fromarray(cropped_image)
-                cropped_image_pil.save(temp_jpeg_file.name, format='JPEG')
+                clustered_image = kmeans_edges(numpy_image, self.num_clusters, self.threshold)
+                clustered_image_pil = PILImage.fromarray(clustered_image)
+                clustered_image_pil.save(temp_jpeg_file.name, format='JPEG')
 
                 with open(temp_jpeg_file.name, 'rb') as f:
                     file_name = os.path.splitext(self.image.name)[0].split('/')[-1] + f'_n{self.num_clusters}' + '.jpeg'
@@ -45,3 +36,4 @@ class UploadedImage(models.Model):
 class ProcessedImage(models.Model):
     uploaded_image = models.ForeignKey(UploadedImage, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='processed/', null=True)
+    

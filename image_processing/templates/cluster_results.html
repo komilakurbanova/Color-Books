@@ -77,7 +77,7 @@
             transition: background-color 0.3s ease;
             box-sizing: border-box;
             font-family: 'TildaSans', Arial, sans-serif;
-            font-size: 1em;
+            font-size: 2vw;
         }
 
         .download-button button:hover {
@@ -97,9 +97,17 @@
             color: rgb(210, 210, 210);
         }
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (max-width: 768px) {
             .container {
                 max-width: 70%;
+            }
+
+            h1 {
+                font-size: 3vw;
+            }
+
+            .home-link {
+                font-size: 2vw;
             }
         }
     </style>

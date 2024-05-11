@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://static.tildacdn.com/css/fonts-tildasans.css" rel="stylesheet" onerror="this.loaderr='y';">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your Coloring Book</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            font-family: 'TildaSans', Arial, sans-serif;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 2.5% 0;
+            text-align: center;
+        }
+
+        .fixed-image {
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 40vh;
+            object-fit: cover;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 52%;
+            margin: 5% auto;
+            padding: 4%;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 5%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .container p {
+            font-size: 1.2vw;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 5%;
+            font-size: 50px;
+            margin-bottom: 0px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 2%;
+            font-size: 3vw;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.7vw;
+        }
+
+        .cstm-button {
+            position: absolute;
+            left: 30%;
+            transform: translateX(-50%);
+            margin-top: 5%;
+        }
+
+        .cstm-button button {
+            width: 20vw;
+            padding: 2% 5%;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 2vw;
+        }
+
+        .cstm-button button:hover {
+            background-color: #ea70ad;
+        }
+
+        .auto-button {
+            position: absolute;
+            left: 70%;
+            transform: translateX(-50%);
+            margin-top: 5%;
+        }
+
+        .auto-button button {
+            width: 20vw;
+            padding: 2% 5%;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 2vw;
+        }
+
+        .auto-button button:hover {
+            background-color: #ea70ad;
+        }
+
+        .line {
+            position: relative;
+            width: 60%;
+            height: 2px;
+            background-color: #535f6b;
+            margin: 8% auto;
+            margin-top: 11%;
+            margin-bottom: 1%;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 48% 48%;
+            /* grid-template-columns: auto auto; */
+            background-color: rgba(255, 255, 255, 0.9);
+            grid-gap: 5%;
+            /* margin-top: 5%; */
+            /* top: 10px; */
+            margin-left: 19%;
+            margin-right: 19%;
+        }
+
+        .grid-item {
+            padding: 10px;
+            border-radius: 0.7%;
+        }
+
+        .bottom-panel {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 8% 0;
+            text-align: center;
+            margin-top: 10%;
+        }
+
+        .bottom-panel p {
+            color: rgb(210, 210, 210);
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                max-width: 70%;
+            }
+
+            .container p {
+                font-size: 12px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 4vw;
+            }
+
+            p {
+                margin-top: 5px;
+                font-size: 2.4vw;
+            }
+
+            .cstm-button button {
+                width: 30vw;
+                font-size: 3.5vw;
+            }
+
+            .auto-button button {
+                width: 30vw;
+                font-size: 3.5vw;
+            }
+
+            .line {
+                width: 80%;
+                margin-top: 15%;
+                margin-bottom: 3%;
+            }
+
+            .grid-container {
+                margin-left: 9.3%;
+                margin-right: 9.5%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+    </div>
+    <img src="https://i.ibb.co/h249gXF/3e41dbfa-1fb6-47c4-b121-11ec21e3c163.jpg" alt="Fixed Image" class="fixed-image">
+    <h1>Create your Coloring Book</h1>
+
+    <div class="cstm-button">
+        <a href="{% url 'upload_image' %}" id="cstm-btn" class="cstm-button">
+            <button>Make Custom</button>
+        </a>
+    </div>
+
+    <div class="auto-button">
+        <a href="{% url 'upload_image_auto' %}" id="auto-btn" class="auto-button">
+            <button>Create Auto</button>
+        </a>
+    </div>
+
+    <div class="line"></div>
+    <div class="grid-container">
+        <div class="grid-item">
+            <p>You can create a coloring book from picture, selecting the parameters by yourself!
+                <br>
+                This method is implemented using K-Means clustering and thresholding
+            <p>
+        </div>
+        <div class="grid-item">
+            <p>We provide the ability to create coloring pages using a neural network with TEED architecture.
+                <br>
+                Just upload your picture and after few seconds you will see the result
+            </p>
+        </div>
+    </div>
+
+    <div class="bottom-panel">
+        <p>For any inquiries, please don't hesitate to reach out to us at krkurbanova@edu.hse.ru.</p>
+    </div>
+</body>
+
+</html>

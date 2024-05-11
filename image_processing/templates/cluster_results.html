@@ -234,7 +234,7 @@
 
 <body>
     <div class="header">
-        <a href="{% url 'upload_image' %}" class="home-link">Main page</a>
+        <a href="{% url 'main_page' %}" class="home-link">Main page</a>
     </div>
     
     <h1>Coloring page is ready! Thank you for waiting</h1>
@@ -257,7 +257,7 @@
         </a>
     </div>
 
-    <form method="POST" action="{% url 'edge_results' %}">
+    <form method="POST" action="{% url 'edge_results' image_id=processed_image.id %}">
         {% csrf_token %}
         <label for="threshold">Threshold:</label>
         <input type="number" name="threshold" id="threshold" min="0" max="255" required>

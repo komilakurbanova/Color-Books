@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://static.tildacdn.com/css/fonts-tildasans.css" rel="stylesheet" onerror="this.loaderr='y';">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Две картинки</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://i.pinimg.com/474x/ec/72/06/ec72062a9724946f1a8275d0f60ee8aa.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'TildaSans', Arial, sans-serif;
+        }
+
+        html {
+            height: 100%;
+            margin: 0;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-top: 3%;
+            font-size: 2.5vw;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-top: 1%;
+            font-size: 1.5vw;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 2.5% 0;
+            text-align: center;
+        }
+
+        .home-link {
+            color: white;
+            text-decoration: none;
+            position: absolute;
+            left: 5%;
+            margin-top: -1%;
+            font-size: 1.5vw;
+        }
+
+        .back-button {
+            position: absolute;
+            margin-top: -3.2%;
+            transform: translateY(-50%);
+            left: 5%;
+        }
+
+        .back-link {
+            color: black;
+            text-decoration: none;
+            font-size: 1.5vw;
+        }
+
+        .back-link button {
+            padding: 2% 5%;
+            width: 6vw;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 1.5vw;
+        }
+
+        .back-link button:hover {
+            background-color: #ea70ad;
+        }
+
+
+        .image-container {
+            margin-top: 3%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            max-height: 70vh;
+            height: auto;
+            border: 2px ridge #535f6b;
+        }
+
+        input[type="number"] {
+            position: absolute;
+            left: 20%;
+            transform: translateX(-50%);
+            margin-top: 0px;
+            width: 10%;
+            height: 2vw;
+            margin-bottom: 2%;
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
+
+
+        label[for="threshold"] {
+            position: absolute;
+            left: 11%;
+            transform: translateX(-50%);
+            margin-top: 3px;
+            font-size: 1.5vw;
+            color: #333;
+        }
+
+        input[type="submit"] {
+            position: absolute;
+            left: 29%;
+            transform: translateX(-50%);
+            margin-top: 1px;
+
+            width: 6vw;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 1.5vw;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ea70ad;
+        }
+
+        .download-button {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 50px;
+        }
+
+        .download-button button {
+            padding: 2% 5%;
+            background-color: #e04492;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-sizing: border-box;
+            font-family: 'TildaSans', Arial, sans-serif;
+            font-size: 2vw;
+        }
+
+        .download-button button:hover {
+            background-color: #ea70ad;
+        }
+
+        .bottom-panel {
+            width: 100%;
+            background-color: #535f6b;
+            color: white;
+            padding: 8% 0;
+            text-align: center;
+            margin-top: 20%;
+        }
+
+        .bottom-panel p {
+            color: rgb(210, 210, 210);
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                max-width: 70%;
+            }
+
+            h1 {
+                font-size: 3vw;
+            }
+
+            h2 {
+                font-size: 2vw;
+            }
+
+            .home-link {
+                font-size: 2vw;
+            }
+
+            .back-button {
+                margin-top: -4%;
+            }
+
+            .back-link button {
+                width: 8vw;
+            }
+
+            input[type="number"] {
+                left: 21%;
+                margin-top: 0px;
+            }
+
+            label[for="threshold"] {
+                left: 11%;
+                margin-top: 1px;
+                font-size: 1.7vw;
+            }
+
+            input[type="submit"] {
+                width: 9vw;
+                margin-top: 1px;
+                left: 32%;
+            }
+
+            .download-button {
+                margin-top: 30px;
+            }
+
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <div class="header">
+        <a href="{% url 'main_page' %}" class="home-link">Main page</a>
+    </div>
+
+    <h1>Coloring page is ready! Thank you for waiting</h1>
+    <div class="back-button">
+        <a href="{% url 'upload_image_auto' %}" id="back-btn" class="back-link"> <!-- Заменить на реальную ссылку -->
+            <button>Back</button>
+        </a>
+    </div>
+
+    <div class="image-container">
+
+        <img src="{{uploaded_image.image.url}}" alt="Uploaded Image">
+        <img id="processed-image" src="{{processed_image.processed_image.url}}" alt="Processed Image">
+    </div>
+
+    <div class="download-button" id="download-button">
+        <a href="{{processed_image.processed_image.url}}" download>
+            <button id="download-btn">Download result</button>
+        </a>
+    </div>
+
+    <script>
+        function updateButtonWidth() {
+            var processedImageWidth = document.getElementById('processed-image').clientWidth;
+            document.getElementById('download-btn').style.width = processedImageWidth + 'px';
+        }
+
+        window.onload = function () {
+            updateButtonWidth();
+            window.addEventListener('resize', updateButtonWidth);
+        };
+    </script>
+    <div class="bottom-panel">
+        <p>For any inquiries, please don't hesitate to reach out to us at krkurbanova@edu.hse.ru.</p>
+    </div>
+</body>
+
+</html>

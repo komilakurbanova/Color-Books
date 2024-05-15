@@ -1,89 +1,66 @@
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/ldc-lightweight-dense-cnn-for-edge-detection/edge-detection-on-brind)](https://paperswithcode.com/sota/edge-detection-on-brind?p=ldc-lightweight-dense-cnn-for-edge-detection) 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/ldc-lightweight-dense-cnn-for-edge-detection/edge-detection-on-biped-1)](https://paperswithcode.com/sota/edge-detection-on-biped-1?p=ldc-lightweight-dense-cnn-for-edge-detection)
-![Lines-of-Code](https://raw.githubusercontent.com/xavysp/LDC/gh-pages/loc-badge.svg)
-[![Hits-of-Code](https://hitsofcode.com/github/xavysp/LDC)](https://hitsofcode.com/view/github/xavysp/LDC)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tiny-and-efficient-model-for-the-edge/edge-detection-on-uded)](https://paperswithcode.com/sota/edge-detection-on-uded?p=tiny-and-efficient-model-for-the-edge)
 
-# LDC: Lightweight Dense CNN for Edge Detection (In construction)
-With the same purpose and features as [DexiNed](https://github.com/xavysp/DexiNed), LDC is a straightforward CNN based model
-for edge detection. LDC has just ~0.7M parameters, it can reduce your time of training and testing. This model is trained
-only on datasets prepared for edge detection [BIPED](https://www.kaggle.com/datasets/xavysp/biped), 
-[MDBD](https://paperswithcode.com/sota/edge-detection-on-mdbd), and 
-[RINDNet](https://github.com/MengyangPu/RINDNet)---we have prepared this dataset here
-[BRIND](https://github.com/xavysp/BRIND).
-Before using this repo, we highly recommend read our paper in 
-[LDC: Lightweight Dense CNN for Edge Detection](https://ieeexplore.ieee.org/document/9807316).
-Check the results below.
+# Tiny and Efficient Model for the Edge Detection Generalization (Paper)
 
-<div style="text-align:center"><img src='imgs/banner.png' width=800>
-</div>
+## Overview
 
-Check the banner in [HR](https://docs.google.com/drawings/d/1xyBniUToGqtgXrrgE7qckrkARkmgHuw945NfgsGjS9s/edit?usp=sharing)
+<div style="text-align:center"><img src='imgs/teed_arch.png' width=800>
+</div> 
 
-## Requirements
+Tiny and Efficient Edge Detector (TEED) is a light convolutional neural
+network with only $58K$ parameters, less than $0.2$% of the 
+state-of-the-art models. Training on the [BIPED](https://www.kaggle.com/datasets/xavysp/biped)
+dataset takes *less than 30 minutes*, with each epoch requiring 
+*less than 5 minutes*. Our proposed model is easy to train
+and it quickly converges within very first few epochs, while the 
+predicted edge-maps are crisp and of high quality, see image above.
+[This paper has been accepted by ICCV 2023-Workshop RCV](https://arxiv.org/abs/2308.06468).
 
-* [Python >= 3.7](https://www.python.org/downloads/release/python-370/g)
-* [Pytorch >=1.6](https://pytorch.org/)
-* [OpenCV](https://pypi.org/project/opencv-python/)
-* [Kornia](https://kornia.github.io/)
-* Other package like Numpy, h5py, PIL, json. 
+... In construction
 
-## Install in your local PC
+    git clone https://github.com/xavysp/TEED.git
+    cd TEED
 
-Once the packages are installed,  clone this repo as follow: 
+Then,
 
-    git clone https://github.com/xavysp/LDC.git
-    cd LDC
-## Project Architecture
+## Testing with TEED
 
-```
-├── data                        # Sample images for testing (paste your image here)
-|   ├── (Some images)           # Images to test LDC
-├── img                         # Images used in README.md
-|   └── banner.png              # LDC banner
-├── utls                        # A series of tools used in this repo
-|   └── img_processing.py       # Miscellaneous tool functions
-├── datasets.py                 # Tools for dataset managing 
-├── losses2.py                  # Loss function used to train DexiNed (BDCNloss2)
-├── main.py                     # The main python file with main functions and parameter settings
-                                # here you can test and train
-├── modelB4.py                  # LDC (4 blocks) class in pythorch
-└── modelB5.py                  # LDC (5 blocks) class in pythorch
-```
+Copy and paste your images into data/ folder, and:
 
-## Test
-
-In dataset.py you will find most of the dataset used in edge, contour, and boundary detection.
-If you have your own dataset copy and paste in data folder and run the code bellow
-    
     python main.py --choose_test_data=-1
 
-## Train
+## Training with TEED
 
-Check the dateset you have for training, set them in dataset.py and main.py---line 216-350. Then
-run the following code:
+Set the following lines in main.py:
 
+    25: is_testing =False
+    # training with BIPED
+    223: TRAIN_DATA = DATASET_NAMES[0] 
+
+then run
+    
     python main.py
 
-## Acknowledgement
-
-* We like to thanks to the previous repo: [DexiNed](https://GitHub.com/xavysp/LDC) and [CATS](https://github.com/WHUHLX/CATS)
+Check the configurations of the datasets in dataset.py
 
 
-# Citation
+## UDED dataset
 
-If you like LDC, why not starring the project on GitHub!
+Here the [link](https://github.com/xavysp/UDED) to access the UDED dataset for edge detection
 
-[![GitHub stars](https://img.shields.io/github/stars/xavysp/LDC.svg?style=social&label=Star&maxAge=3600)](https://GitHub.com/xavysp/LDC/stargazers/)
+## Citation
 
-Please cite our paper if you find helpful in your academic/scientific publication,
+If you like TEED, why not starring the project on GitHub!
+
+[![GitHub stars](https://img.shields.io/github/stars/xavysp/TEED.svg?style=social&label=Star&maxAge=3600)](https://GitHub.com/xavysp/TEED/stargazers/)
+
+Please cite our Dataset if you find helpful in your academic/scientific publication,
 ```
-@ARTICLE{xsoria2022ldc,
-  author={Soria, Xavier and Pomboza-Junez, Gonzalo and Sappa, Angel Domingo},
-  journal={IEEE Access}, 
-  title={LDC: Lightweight Dense CNN for Edge Detection}, 
-  year={2022},
-  volume={10},
-  number={},
-  pages={68281-68290},
-  doi={10.1109/ACCESS.2022.3186344}}
-```
+@InProceedings{Soria_2023teed,
+    author    = {Soria, Xavier and Li, Yachuan and Rouhani, Mohammad and Sappa, Angel D.},
+    title     = {Tiny and Efficient Model for the Edge Detection Generalization},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV) Workshops},
+    month     = {October},
+    year      = {2023},
+    pages     = {1364-1373}
+}

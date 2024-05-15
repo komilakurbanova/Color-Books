@@ -17,8 +17,7 @@ Color Books is a Python-based repository designed to create coloring pages from 
 Color Books offers two methods of image to color page processing:
 1. **K-Means Clustering with Thresholding:** This method segments the image into clusters based on color similarity using the K-Means algorithm. Thresholding is then applied to the gradient magnitude image obtained from Sobel edge detection to extract edges and create distinct regions suitable for coloring.
 
-2. **TEED:** The [TEED](https://arxiv.org/abs/2308.06468) is a lightweight CNN discovered by Xavier Soria et al. with architechure as described: ![](TEED/imgs/teed_arch.png)
-
+2. **TEED:** The [TEED](https://arxiv.org/abs/2308.06468) is a lightweight CNN discovered by Xavier Soria et al. with architechure as described in [TEED README.md](TEED/README.md).
 
 ## TEED
 The service uses the result of the 20th epoch, different epochs weights could be found in the `TEED/checkpoints/BIPED` directory
